@@ -1,0 +1,16 @@
+{
+  "defaultAssembly": "GestionBanque",
+  "components": [
+    {
+      "type": "GestionBanque.Views.InteractionUtilisateurGui",
+      "services": [
+        {
+          "type": "GestionBanque.ViewModels.Interfaces.IInteractionUtilisateur"
+        }
+      ]
+    },
+    {
+      "type": "GestionBanque.ViewModels.MainViewModel"
+    }
+  ]
+}
