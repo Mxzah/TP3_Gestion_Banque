@@ -82,7 +82,7 @@ namespace GestionBanque.Models
             }
         }
 
-        public override string ToString() => $"{Prenom} {Nom}";
+        public override string ToString() => $"{Prenom} {Nom} <{Courriel}>";
 
         public override bool Equals(object? obj)
         {
