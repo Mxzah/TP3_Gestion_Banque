@@ -55,6 +55,7 @@ namespace GestionBanque.ViewModels
                 }
                 catch (Exception ex) 
                 { 
+                    ClientSelectionne.Nom = vieuxNom;
                     ClientSelectionne.Prenom = vieuxPrenom;
                     ClientSelectionne.Courriel = vieuxCourriel;
                     _interaction.AfficherMessageErreur(ex.Message);
@@ -112,6 +113,7 @@ namespace GestionBanque.ViewModels
                 _clientSelectionne = value;
                 Nom = value?.Nom ?? string.Empty;
                 Prenom = value?.Prenom ?? string.Empty;
+                Courriel = value?.Courriel ?? string.Empty;
                 OnPropertyChanged();
             }
         }
