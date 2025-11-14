@@ -12,7 +12,7 @@ namespace GestionBanque.Tests
     // bd de tests pendant qu'un test d'une autre classe utilise la bd. Bref, c'est pour éviter un
     // accès concurrent à la BD de tests!
     [Collection("Dataservice")]
-    public  class CompteSqliteDataServiceTest
+    public class CompteSqliteDataServiceTest
     {
         private const string CheminBd = "..\\test.bd";
 
@@ -33,7 +33,7 @@ namespace GestionBanque.Tests
 
         [Fact]
         [AvantApresDataService(CheminBd)]
-        public void Update_ShouldBeValid()
+        public void Update_PersistsUpdatedCompte_WhenCompteExists()
         {
             // Préparation
             CompteSqliteDataService ds = new CompteSqliteDataService(CheminBd);
@@ -47,13 +47,13 @@ namespace GestionBanque.Tests
 
         [Fact]
         [AvantApresDataService(CheminBd)]
-        public void Update_ShouldThrow_WhenCompteDoesNotExist()
+        public void Update_ReturnsFalse_WhenCompteDoesNotExist()
         {
             // Préparation
             CompteSqliteDataService ds = new CompteSqliteDataService(CheminBd);
             Compte compteModifie = new Compte(999, "0000", 1000.00, 1);
             // Exécution & Affirmation
-            Assert.Equal(false, ds.Update(compteModifie));
+            Assert.False(ds.Update(compteModifie));
         }
 
     }

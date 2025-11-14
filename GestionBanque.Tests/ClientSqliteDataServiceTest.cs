@@ -1,5 +1,4 @@
-﻿
-using GestionBanque.Models;
+﻿using GestionBanque.Models;
 using GestionBanque.Models.DataService;
 using System.Numerics;
 
@@ -19,7 +18,7 @@ namespace GestionBanque.Tests
 
         [Fact]
         [AvantApresDataService(CheminBd)]
-        public void Get_ShouldBeValid()
+        public void Get_ReturnsClientWithAccounts_WhenIdExists()
         {
             // Préparation
             ClientSqliteDataService ds = new ClientSqliteDataService(CheminBd);
@@ -36,7 +35,7 @@ namespace GestionBanque.Tests
 
         [Fact]
         [AvantApresDataService(CheminBd)]
-        public void GetAll_ShouldBeValid()
+        public void GetAll_ReturnsAllClientsWithTheirAccounts()
         {
             // Préparation
             ClientSqliteDataService ds = new ClientSqliteDataService(CheminBd);
@@ -60,7 +59,7 @@ namespace GestionBanque.Tests
 
         [Fact]
         [AvantApresDataService(CheminBd)]
-        public void RecupererCompte_ShouldBeValid()
+        public void GetAll_ReturnsAllComptesAcrossClients()
         {
             // Préparation
             ClientSqliteDataService ds = new ClientSqliteDataService(CheminBd);
@@ -82,7 +81,7 @@ namespace GestionBanque.Tests
 
         [Fact]
         [AvantApresDataService(CheminBd)]
-        public void Update_ShouldBeValid()
+        public void Update_ModifiesClientInDatabase_ReturnsTrueAndPersists()
         {
             // Préparation
             ClientSqliteDataService ds = new ClientSqliteDataService(CheminBd);
@@ -99,6 +98,22 @@ namespace GestionBanque.Tests
             Client? clientResultat = ds.Get(2);
             Assert.NotNull(clientResultat);
             Assert.Equal(clientModifier, clientResultat);
+        }
+
+        [Fact]
+        [AvantApresDataService(CheminBd)]
+        public void Update_ReturnsFalse_WhenClientDoesNotExist()
+        {
+            // Préparation
+            ClientSqliteDataService ds = new ClientSqliteDataService(CheminBd);
+            Client clientModifier = new Client(999, "NonExistent", "Client", "email@email.com");
+
+            //Exécution
+            bool resultat = ds.Update(clientModifier);
+
+            // Affirmation
+            Assert.False(resultat, "Update should return false when no rows are affected.");
+
         }
     }
 }
