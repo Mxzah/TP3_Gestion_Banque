@@ -4,10 +4,29 @@
     {
       "type": "GestionBanque.Views.InteractionUtilisateurGui",
       "services": [
-        {
-          "type": "GestionBanque.ViewModels.Interfaces.IInteractionUtilisateur"
-        }
+        { "type": "GestionBanque.ViewModels.Interfaces.IInteractionUtilisateur" }
       ]
+    },
+    {
+      "type": "GestionBanque.Models.DataService.ClientSqliteDataService",
+      "services": [
+        { "type": "GestionBanque.Models.DataService.IDataService`1[[GestionBanque.Models.Client]]" }
+      ],
+      "parameters": {
+        "nomBd": "banque.bd"
+      }
+    },
+    {
+      "type": "GestionBanque.Models.DataService.CompteSqliteDataService",
+      "services": [
+        { "type": "GestionBanque.Models.DataService.IDataService`1[[GestionBanque.Models.Compte]]" }
+      ],
+      "parameters": {
+        "nomBd": "banque.bd"
+      }
+    },
+    {
+      "type": "GestionBanque.ViewModels.BanqueViewModel"
     },
     {
       "type": "GestionBanque.ViewModels.MainViewModel"
